@@ -38,7 +38,7 @@ export function DataTable<TData, TValue>({
     console.log("🚀 ~ handleClick ~ data:", data);
     router.push(`/monitor/${data.id}`);
 
-    console.log("dsfa");
+ 
   };
 
   return (
@@ -69,12 +69,12 @@ export function DataTable<TData, TValue>({
                 onClick={() => {
                   handleClick(row.original);
                 }}
-                className=" "
+                className=" hover:bg-slate-200"
                 key={row.id}
                 data-state={row.getIsSelected() && "selected"}
               >
                 {row.getVisibleCells().map((cell) => (
-                  <TableCell key={cell.id}>
+                  <TableCell  key={cell.id}>
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>
                 ))}

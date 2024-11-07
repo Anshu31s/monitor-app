@@ -7,7 +7,7 @@ import React from "react";
 
 function Dashboard() {
   return (
-    <div className="">
+    <div >
       <div className=" flex justify-between ">
         <h2 className=" text-primary mb-2 text-3xl font-semibold">Monitors</h2>
         <Link href={'/new-monitor'}>
