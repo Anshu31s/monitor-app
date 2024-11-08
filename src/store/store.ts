@@ -1,6 +1,7 @@
 import { create } from "zustand";
 
 interface urlDetails {
+  id: string ;
   lastChecked: string | null;
   currentStatus: string | null;
   upTimePercentage: number | null;
@@ -9,11 +10,12 @@ interface urlDetails {
 
 interface StoreState {
   urlDetails: urlDetails;
-  updateDetails: (newUrlData: urlDetails) => void;
+  updateDetails: (newUrlData: Partial<urlDetails>) => void;
 }
 
 export const useStore = create<StoreState>((set) => ({
   urlDetails: {
+    id: '',
     currentlyUpFor: null,
     currentStatus: null,
     lastChecked: null,
@@ -21,6 +23,6 @@ export const useStore = create<StoreState>((set) => ({
   },
   updateDetails: (newUrlData) =>
     set((state) => ({
-      urlDetails: { ...newUrlData },
+      urlDetails: { ...state.urlDetails, ...newUrlData },
     })),
 }));

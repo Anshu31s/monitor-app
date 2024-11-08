@@ -13,15 +13,17 @@ import { BellIcon, CheckCheck, Edit, Pause } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import CardComponent from "@/components/monitor/card";
 import { Skeleton } from "@/components/ui/skeleton";
-
 import MonitorChart from "@/components/monitor/chart";
 import { getUrlDetails } from "@/app/action";
 import { useEffect, useState } from "react";
 import { url } from "@prisma/client";
 import { useStore } from "@/store/store";
+import TotalUptimeCard from "@/components/monitor/totalUptimeCard";
+import LastChecked from "@/components/monitor/lastChecked";
 
 export default function Page() {
-  const [urlDetails, setUrlDetails] = useState<url | null>(null);
+  const [initialUrlDetail, setInitialUrlDetails] = useState<url | null>(null);
+  const {updateDetails,urlDetails} = useStore()
 
   const params = useParams<{ id: string }>();
   const urlId = params.id;
@@ -29,12 +31,13 @@ export default function Page() {
   useEffect(() => {
     async function getDetails() {
       const details = await getUrlDetails(urlId);
-      setUrlDetails(details);
+      updateDetails({id:details?.id})
+      setInitialUrlDetails(details);
     }
     getDetails();
   }, [urlId]);
 
-  if (urlDetails === null) {
+  if (initialUrlDetail === null) {
     return (
       <>
         <Skeleton className="w-[100px] h-[20px] rounded-full" />
@@ -55,18 +58,18 @@ export default function Page() {
               <div>
                 <Lottie
                   animationData={
-                    urlDetails.status === "UP" ? up_animation : down_animation
+                    urlDetails.currentStatus === "UP" ? up_animation : down_animation
                   }
                   loop={true}
                   className=" size-10"
                 />
               </div>
               <span className=" text-xl font-semibold">
-                {urlDetails?.siteName}
+                {initialUrlDetail?.siteName}
               </span>
             </CardTitle>
             <CardDescription className=" ml-11">
-              {urlDetails?.url}
+              {initialUrlDetail?.url}
             </CardDescription>
           </CardHeader>
           <div className=" p-6 flex gap-5 w-[30%]">
@@ -86,8 +89,8 @@ export default function Page() {
         </Card>
       </div>
       <div className=" flex gap-5 mt-5">
-        <CardComponent title="Total Uptime" description="15 days" />
-        <CardComponent title="Last Checked" description="3 Min" />
+        <TotalUptimeCard />
+       <LastChecked/>
         <CardComponent title="Current Status" description="UP" />
         <CardComponent title="Uptime" description="99.99%" />
       </div>
