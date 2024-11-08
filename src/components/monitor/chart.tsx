@@ -1,49 +1,54 @@
-import * as d3 from "d3";
-import { div } from "framer-motion/client";
-import { useRef, useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
+import Chart from "react-apexcharts";
 
-export default function LinePlot({
-  width = 1000,
-  height = 400,
-  marginTop = 20,
-  marginRight = 20,
-  marginBottom = 30,
-  marginLeft = 40,
-}) {
-  const [data, setData] = useState(() => d3.ticks(-2, 2, 200).map(Math.sin));
-  const gx = useRef();
-  const gy = useRef();
-  const x = d3.scaleLinear(
-    [0, data.length - 1],
-    [marginLeft, width - marginRight]
-  );
-  const y = d3.scaleLinear(d3.extent(data), [height - marginBottom, marginTop]);
-  const line = d3.line((d, i) => x(i), y);
-  useEffect(() => void d3.select(gx.current).call(d3.axisBottom(x)), [gx, x]);
-  useEffect(() => void d3.select(gy.current).call(d3.axisLeft(y)), [gy, y]);
+function MonitorChart() {
+  const [getDatayear, setGetDatayear] = useState([]);
+  
+  const [getDatacommit, setGetDatacommit] = useState([]);
 
-  function onMouseMove(event) {
-    const [x, y] = d3.pointer(event);
-    setData(data.slice(-200).concat(Math.atan2(x, y)));
-  }
 
+ 
+ 
   return (
-    <div onMouseMove={onMouseMove}>
-      <svg width={width} height={height}>
-        <g ref={gx} transform={`translate(0,${height - marginBottom})`} />
-        <g ref={gy} transform={`translate(${marginLeft},0)`} />
-        <path
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          d={line(data)}
-        />
-        <g fill="white" stroke="currentColor" strokeWidth="1.5">
-          {data.map((d, i) => (
-            <circle key={i} cx={x(i)} cy={y(d)} r="2.5" />
-          ))}
-        </g>
-      </svg>
-    </div>
+    <React.Fragment>
+      <div className="container-fluid mb-3 mt-3">
+        <h2>Areachart Github Style</h2>
+
+        <Chart
+          type="area"
+          width={600}
+          height={300}
+          series={[
+            { name: "Commits", data: [345, 27, 121, 676, 98, 321] },
+            { name: "updates", data: [45, 327, 21, 176, 98, 321] },
+          ]}
+          options={{
+            title: {
+              text: "Areachart Github Style",
+              style: { fontSize: 20 },
+            },
+
+            colors: ["#4b00f9"],
+            stroke: { width: 3, curve: "smooth" },
+            ///fill:{opacity:1, type:'solid'},
+
+            xaxis: {
+              title: {
+                text: "Commit in Year",
+                style: { fontSize: 20, color: "#614040" },
+              },
+              categories: getDatayear,
+            },
+            yaxis: {
+              title: {
+                text: "No of Commits",
+                style: { fontSize: 20 },
+              },
+            },
+          }}
+        ></Chart>
+      </div>
+    </React.Fragment>
   );
 }
+export default MonitorChart;

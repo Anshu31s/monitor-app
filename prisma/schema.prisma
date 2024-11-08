@@ -24,20 +24,38 @@ model user {
 }
 
 model url {
-  id             String         @id @default(uuid())
+  id             String  @id @default(uuid())
   userId         String
   url            String
-  siteName      String
+  siteName       String
   status         STATUS
-  reqTime        Int  
-  totalUptime    Int            @default(0)
-  totalDowntime  Int            @default(0)
+  reqTime        Int
+  totalUptime    Int     @default(0)
+  targetDomain   String
   notificationId String?
-  lastDownTime   DateTime?
-  createdAt      DateTime       @default(now())
-  updatedAt      DateTime       @updatedAt
-  user           user           @relation(fields: [userId], references: [id])
-  notification   notification[]
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  user         user           @relation(fields: [userId], references: [id])
+  notification notification[]
+  incident     incident[]
+  pingLog      pingLog[]
+}
+
+model incident {
+  id        String    @id @default(uuid())
+  urlId     String
+  startTime DateTime  @default(now())
+  endTime  DateTime?
+  urls      url       @relation(fields: [urlId], references: [id])
+}
+
+model pingLog {
+  id        String   @id @default(uuid())
+  urlId     String
+  avgTime   Int
+  maxTime   Int
+  urls      url      @relation(fields: [urlId], references: [id])
+  createdAt DateTime @default(now())
 }
 
 model notification {

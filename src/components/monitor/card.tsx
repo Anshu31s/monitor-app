@@ -20,12 +20,6 @@ export default function CardComponent(cardProp: cardProp) {
           <CardTitle className=" text-sm">{cardProp.title}</CardTitle>
           <CardDescription className=" font-bold text-xl">{cardProp.description}</CardDescription>
         </CardHeader>
-        {/* <CardContent>
-          <p>Card Content</p>
-        </CardContent>
-        <CardFooter>
-          <p>Card Footer</p>
-        </CardFooter> */}
       </Card>
     </div>
   );

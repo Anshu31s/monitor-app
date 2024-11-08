@@ -69,7 +69,7 @@ export function DataTable<TData, TValue>({
                 onClick={() => {
                   handleClick(row.original);
                 }}
-                className=" hover:bg-slate-200"
+                className=" hover:bg-blend-hard-light"
                 key={row.id}
                 data-state={row.getIsSelected() && "selected"}
               >
