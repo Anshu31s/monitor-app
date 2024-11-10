@@ -25,7 +25,7 @@ function MonitorChart() {
           options={{
             title: {
               text: "Areachart Github Style",
-              style: { fontSize: 20 },
+              style: { fontSize: '20' },
             },
 
             colors: ["#4b00f9"],
@@ -35,14 +35,14 @@ function MonitorChart() {
             xaxis: {
               title: {
                 text: "Commit in Year",
-                style: { fontSize: 20, color: "#614040" },
+                style: { fontSize: '20', color: "#614040" },
               },
               categories: getDatayear,
             },
             yaxis: {
               title: {
                 text: "No of Commits",
-                style: { fontSize: 20 },
+                style: { fontSize: '20' },
               },
             },
           }}

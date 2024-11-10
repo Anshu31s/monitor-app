@@ -54,7 +54,7 @@ export async function PollUrl(urlId: string) {
       },
     });
 
-    console.log("🚀 ~ PollUrl ~ details:", details);
+ 
     return details;
   } catch (error) {
     console.log("🚀 ~ PollUrl ~ error:", error);
