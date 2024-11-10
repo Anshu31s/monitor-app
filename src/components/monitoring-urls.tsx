@@ -1,25 +1,25 @@
-import { URL, columns } from "./data-table/column";
+"use client";
+import { useEffect, useState } from "react";
+import { columns } from "./data-table/column";
 import { DataTable } from "./data-table/dataTable";
 
-export default async function MonitoringComponent() {
-  const data: URL[] = [
-    {
-      id: "728ed52f",
-      ReqTime: "3 Min",
-      status: "UP",
-      SiteName: "Google.com",
-    },
-    {
-      id: "728ed52f",
-      ReqTime: "3 Min",
-      status: "UP",
-      SiteName: "Google.com",
-    },
-  ];
+import { url } from "@prisma/client";
+import { getUrlList } from "@/app/action";
+
+export default function MonitoringComponent() {
+  const [urlList, setUrlList] = useState<url[] | []>([]);
+
+  useEffect(() => {
+    const getUrl = async () => {
+      const data = await getUrlList();
+      setUrlList(data);
+    };
+    getUrl();
+  }, []);
 
   return (
     <div className="container mx-auto py-10 w-[100]">
-      <DataTable columns={columns} data={data} />
+      <DataTable columns={columns} data={urlList} />
     </div>
   );
 }

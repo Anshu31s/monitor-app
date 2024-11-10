@@ -13,25 +13,21 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { url } from "@prisma/client";
 
-export type URL = {
-  id: string;
-  SiteName: string;
-  status: "UP" | "DOWN";
-  ReqTime: string;
-};
 
-export const columns: ColumnDef<URL>[] = [
+
+export const columns: ColumnDef<url>[] = [
   {
     accessorKey: "status",
     header: "Status",
   },
   {
-    accessorKey: "SiteName",
+    accessorKey: "siteName",
     header: "Site Name",
   },
   {
-    accessorKey: "ReqTime",
+    accessorKey: "reqTime",
     header: "Request Time",
    
   },

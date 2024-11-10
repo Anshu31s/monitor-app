@@ -1,11 +1,13 @@
 import { create } from "zustand";
 
 interface urlDetails {
-  id: string ;
-  lastChecked: string | null;
+  id: string;
+  lastChecked: Date | null;
   currentStatus: string | null;
-  upTimePercentage: number | null;
-  currentlyUpFor: string | null;
+
+  currentlyUpFor: Date | null;
+  monitoringStartTime: Date | null;
+  uptimeInMinutes: number | null;
 }
 
 interface StoreState {
@@ -15,11 +17,13 @@ interface StoreState {
 
 export const useStore = create<StoreState>((set) => ({
   urlDetails: {
-    id: '',
+    id: "",
     currentlyUpFor: null,
     currentStatus: null,
     lastChecked: null,
-    upTimePercentage: null,
+
+    monitoringStartTime: null,
+    uptimeInMinutes: null,
   },
   updateDetails: (newUrlData) =>
     set((state) => ({
