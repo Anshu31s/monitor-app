@@ -9,7 +9,6 @@ import getCurrentUpFor from "@/lib/getCurrentUpFor";
 
 function LastChecked() {
   const { urlDetails, updateDetails } = useStore();
-  console.log("🚀 ~ LastChecked ~ urlDetails:", urlDetails)
 
   const [lastCheckedTime, setLastCheckedTime] = useState<string | null>(null);
 
@@ -25,7 +24,7 @@ function LastChecked() {
         uptimeInMinutes: data?.totalUptime,
       });
 
-      setTimeout(poll, 240000);
+      setTimeout(poll, 120000);
     };
 
     poll();
@@ -33,8 +32,6 @@ function LastChecked() {
 
   useEffect(() => {
     const timeCheck = () => {
-      console.log(urlDetails.lastChecked);
-
       const response = formatDistance(
         urlDetails.lastChecked ? urlDetails.lastChecked : new Date(),
         new Date(),

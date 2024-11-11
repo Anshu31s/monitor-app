@@ -8,28 +8,32 @@ function CurrentlyUpForCard() {
   const { urlDetails } = useStore();
   const [title, setTitle] = useState<string | null>(null);
   const [description, setDescription] = useState<string | null>(null);
-  console.log("🚀 ~ CurrentlyUpForCard ~ description:", description)
 
-  const handleCurrentTime = (date: Date) => {
-   
-    const response = formatDistance(date!, new Date(), {
-      addSuffix: true,
-    });
-    const duration = response.replace("about", "");
+  useEffect(() => {
+    const handleCurrentTime = () => {
+      const response = formatDistance(
+        urlDetails.currentlyUpFor ? urlDetails.currentlyUpFor : new Date(),
+        new Date(),
+        {
+          addSuffix: true,
+        }
+      );
+      const duration = response.replace("about", "");
 
-    setDescription(duration);
-  };
+      if (urlDetails.currentStatus) {
+        setDescription(duration);
+      }
+      setTimeout(handleCurrentTime, 60000);
+    };
+    handleCurrentTime();
+  }, [urlDetails.currentlyUpFor]);
 
   useEffect(() => {
     if (urlDetails.currentlyUpFor) {
       if (urlDetails.currentStatus === "UP") {
         setTitle("Currently up for");
-        
-        
-        handleCurrentTime(urlDetails.currentlyUpFor);
       } else {
         setTitle("Currently Down for");
-        handleCurrentTime(urlDetails.currentlyUpFor!);
       }
     }
   }, [urlDetails.currentlyUpFor]);
