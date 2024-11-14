@@ -40,6 +40,7 @@ model incident {
   startTime      DateTime      @default(now())
   endTime        DateTime?
   notificationId String?       @unique
+  createdAt      DateTime      @default(now())
   notification   notification? @relation(fields: [notificationId], references: [id])
   urls           url           @relation(fields: [urlId], references: [id])
 }
