@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -24,29 +18,30 @@ model user {
 }
 
 model url {
-  id             String  @id @default(uuid())
-  userId         String
-  url            String
-  siteName       String
-  status         STATUS
-  reqTime        Int
-  totalUptime    Int     @default(0)
-  targetDomain   String
-  notificationId String?
+  id           String         @id @default(uuid())
+  userId       String
+  url          String
+  status       STATUS
+  reqTime      Int
   createdAt    DateTime       @default(now())
+  totalUptime  Int            @default(0)
   updatedAt    DateTime       @updatedAt
-  user         user           @relation(fields: [userId], references: [id])
-  notification notification[]
+  siteName     String
+  targetDomain String
   incident     incident[]
+  notification notification[]
   pingLog      pingLog[]
+  user         user           @relation(fields: [userId], references: [id])
 }
 
 model incident {
-  id        String    @id @default(uuid())
-  urlId     String
-  startTime DateTime  @default(now())
-  endTime  DateTime?
-  urls      url       @relation(fields: [urlId], references: [id])
+  id             String        @id @default(uuid())
+  urlId          String
+  startTime      DateTime      @default(now())
+  endTime        DateTime?
+  notificationId String?       @unique
+  notification   notification? @relation(fields: [notificationId], references: [id])
+  urls           url           @relation(fields: [urlId], references: [id])
 }
 
 model pingLog {
@@ -54,18 +49,19 @@ model pingLog {
   urlId     String
   avgTime   Int
   maxTime   Int
-  urls      url      @relation(fields: [urlId], references: [id])
   createdAt DateTime @default(now())
+  urls      url      @relation(fields: [urlId], references: [id])
 }
 
 model notification {
-  id            String   @id @default(uuid())
+  id            String    @id @default(uuid())
   urlId         String
   totalMailSent Int
-  mailLimit     Int      @default(3)
-  url           url      @relation(fields: [urlId], references: [id])
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  mailLimit     Int       @default(2)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  incident      incident?
+  url           url       @relation(fields: [urlId], references: [id])
 }
 
 enum STATUS {
