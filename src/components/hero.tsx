@@ -16,8 +16,9 @@ export function MeteorsDemo() {
           Get the best advices from our experts, including expert artists,
           painters, marathon enthusiasts and RDX, totally free.
         </p>
-        <div className="px-8 sm:items-center z-40 sm:justify-center sm:px-0 sm:flex mt-9 space-y-3 sm:space-y-0 sm:space-x-5">
+        <div className="px-8 sm:items-center z-50 sm:justify-center sm:px-0 sm:flex mt-9 space-y-3 sm:space-y-0 sm:space-x-5">
           <Button
+            className=" z-50"
             onClick={() => {
               redirect("/sign-in");
             }}
