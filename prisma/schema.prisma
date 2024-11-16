@@ -23,15 +23,16 @@ model url {
   url          String
   status       STATUS
   reqTime      Int
+  isPaused     Boolean        @default(false)
   createdAt    DateTime       @default(now())
   totalUptime  Int            @default(0)
   updatedAt    DateTime       @updatedAt
   siteName     String
   targetDomain String
   incident     incident[]
-  notification notification[]
   pingLog      pingLog[]
   user         user           @relation(fields: [userId], references: [id])
+  notification notification[]
 }
 
 model incident {
@@ -40,9 +41,9 @@ model incident {
   startTime      DateTime      @default(now())
   endTime        DateTime?
   notificationId String?       @unique
-  createdAt      DateTime      @default(now())
   notification   notification? @relation(fields: [notificationId], references: [id])
   urls           url           @relation(fields: [urlId], references: [id])
+  createdAt      DateTime      @default(now())
 }
 
 model pingLog {

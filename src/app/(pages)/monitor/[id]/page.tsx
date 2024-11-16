@@ -23,6 +23,7 @@ import CurrentStatusCard from "@/components/monitor/currentStatusCard";
 import CurrentlyUpForCard from "@/components/monitor/CurrentlyUpForCard";
 import UptimeCard from "@/components/monitor/uptimeCard";
 import getCurrentUpFor from "@/lib/getCurrentUpFor";
+import PauseButton from "@/components/Buttons/pauseButton";
 
 export default function Page() {
   const [initialUrlDetail, setInitialUrlDetails] = useState<url | null>(null);
@@ -38,10 +39,7 @@ export default function Page() {
 
       updateDetails({
         id: details?.id,
-        // currentStatus: details?.status,
-        // currentlyUpFor: details?.createdAt || new Date(),
-        // monitoringStartTime: details?.createdAt,
-        // uptimeInMinutes: details?.totalUptime,
+        isPaused:details?.isPaused
       });
 
       setInitialUrlDetails(details);
@@ -87,10 +85,7 @@ export default function Page() {
             </CardDescription>
           </CardHeader>
           <div className=" p-6 flex gap-5 w-[30%]">
-            <Button>
-              <Pause />
-              Pause
-            </Button>
+          <PauseButton/>
             <Button>
               <BellIcon />
               Test Notification

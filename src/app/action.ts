@@ -54,7 +54,6 @@ export async function PollUrl(urlId: string) {
       },
     });
 
- 
     return details;
   } catch (error) {
     console.log("🚀 ~ PollUrl ~ error:", error);
@@ -70,4 +69,20 @@ export async function getUrlList() {
   });
 
   return response;
+}
+
+export async function updateIsPaused(urlId: string, currentStatus: boolean) {
+  try {
+    const changePauseStatus = await prisma_client.url.update({
+      where: {
+        id: urlId,
+      },
+      data: {
+        isPaused: !currentStatus,
+      },
+    });
+    return changePauseStatus
+  } catch (error) {
+    throw new Error('something went wrong')
+  }
 }

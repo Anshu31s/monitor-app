@@ -8,16 +8,16 @@ export async function POST(req: Request) {
   try {
     const userId: string = await getUserId();
     const body: newMonitor = await req.json();
-    const targetDomain = extractDomain(body.url)
+
+    const targetDomain = extractDomain(body.url);
 
     const newMonitor = await prisma_client.url.create({
       data: {
         ...body,
         userId: userId,
-        targetDomain
+        targetDomain,
       },
     });
-    
 
     return Response.json(
       {
@@ -30,6 +30,7 @@ export async function POST(req: Request) {
       }
     );
   } catch (error) {
+    console.log("🚀 ~ POST ~ error:", error);
     return Response.json(
       {
         success: false,
@@ -45,12 +46,10 @@ export async function POST(req: Request) {
 function extractDomain(url: string): string {
   try {
     const parsedUrl = new URL(url);
-    
-   
-    return parsedUrl.hostname.replace(/^www\./, '');
+
+    return parsedUrl.hostname.replace(/^www\./, "");
   } catch (error) {
-    console.error('Invalid URL:', error);
-    return '';
+    console.error("Invalid URL:", error);
+    return "";
   }
 }
-

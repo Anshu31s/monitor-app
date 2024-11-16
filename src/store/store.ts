@@ -4,7 +4,7 @@ interface urlDetails {
   id: string;
   lastChecked: Date | null;
   currentStatus: string | null;
-
+   isPaused: boolean | null
   currentlyUpFor: Date | null;
   monitoringStartTime: Date | null;
   uptimeInMinutes: number | null;
@@ -19,6 +19,7 @@ export const useStore = create<StoreState>((set) => ({
   urlDetails: {
     id: "",
     currentlyUpFor: null,
+    isPaused:null,
     currentStatus: null,
     lastChecked: null,
 
