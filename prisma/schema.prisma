@@ -22,7 +22,7 @@ model url {
   userId       String
   url          String
   status       STATUS
-  reqTime      Int
+  reqTime      Int            @default(3)
   isPaused     Boolean        @default(false)
   createdAt    DateTime       @default(now())
   totalUptime  Int            @default(0)

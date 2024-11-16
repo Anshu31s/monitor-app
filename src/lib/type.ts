@@ -4,5 +4,5 @@ export interface newMonitor {
     url:string,
     status:STATUS,
     siteName:string,
-    reqTime:number
+
 }

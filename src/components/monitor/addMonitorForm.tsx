@@ -35,7 +35,7 @@ import { useRouter } from "next/navigation";
 const formSchema = z.object({
   url: z.string(),
   siteName: z.string(),
-  reqTime: z.string(),
+ 
 });
 
 const urlRegex = /^(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(\/[^\s]*)?$/;
@@ -54,7 +54,7 @@ export function NewMonitorForm() {
     resolver: zodResolver(formSchema),
     defaultValues: {
       url: "https://",
-      reqTime: "",
+   
     },
   });
 
@@ -103,7 +103,7 @@ export function NewMonitorForm() {
     try {
       const response = await axios.post("/api/add-monitor", {
         ...values,
-        reqTime: Number(values.reqTime),
+       
         status,
       });
       router.push(`/monitor/${response.data.data.id}`);
@@ -174,32 +174,7 @@ export function NewMonitorForm() {
               )}
             />
 
-            <FormField
-              control={form.control}
-              name="reqTime"
-              render={({ field }) => (
-                <FormItem className="text-left">
-                  <FormLabel className="font-semibold text-gray-700">
-                    Monitor Interval
-                  </FormLabel>
-                  <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                  >
-                    <FormControl>
-                      <SelectTrigger className="border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 rounded-md">
-                        <SelectValue placeholder="Select monitor interval " />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      <SelectItem value="3 ">3 Min</SelectItem>
-                      <SelectItem value="5">5 Min</SelectItem>
-                    </SelectContent>
-                  </Select>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+          
 
             <Button type="submit" disabled={isLoading || isSubmitting}>
               Submit

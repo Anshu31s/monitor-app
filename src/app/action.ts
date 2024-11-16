@@ -2,6 +2,9 @@
 
 import { getUserId } from "@/lib/getUserId";
 import { prisma_client } from "./DB/client";
+import { formSchema } from "@/components/Buttons/editProfile";
+import { z } from "zod";
+import { error } from "console";
 
 //get url Details
 export async function getUrlDetails(urlId: string) {
@@ -81,8 +84,30 @@ export async function updateIsPaused(urlId: string, currentStatus: boolean) {
         isPaused: !currentStatus,
       },
     });
-    return changePauseStatus
+    return changePauseStatus;
   } catch (error) {
-    throw new Error('something went wrong')
+    throw new Error("something went wrong");
+  }
+}
+
+export async function updateUrlDetail(
+  urlId: string | undefined,
+  data: z.infer<typeof formSchema>
+) {
+  if (!urlId) {
+    return new Error("Id not found");
+  }
+  try {
+    const updateUrl = await prisma_client.url.update({
+      where: {
+        id: urlId,
+      },
+      data: {
+        ...data,
+      },
+    });
+    return updateUrl;
+  } catch (error) {
+    return new Error("Something went wrong");
   }
 }
