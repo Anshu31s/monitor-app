@@ -3,9 +3,9 @@ import React, { ReactNode } from "react";
 
 function layout({ children }: { children: ReactNode }) {
   return (
-    <div className=" h-full w-full ">
+    <div className="w-full">
       <SidebarDemo>
-      <div className=" border  m-11 p-3  w-screen h-screen">
+      <div className="border w-full p-4 m-4">
           {children}
          </div>
       </SidebarDemo>

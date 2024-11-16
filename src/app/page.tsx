@@ -3,8 +3,7 @@ import { HeroScrollDemo } from "@/components/container-scroll";
 import { FeaturesSectionDemo } from "@/components/features";
 import { MeteorsDemo } from "@/components/hero";
 import { NavbarDemo } from "@/components/navbar";
-import { Button } from "@/components/ui/button";
-import { redirect } from "next/navigation";
+
 
 export default function Home() {
   return (
@@ -13,14 +12,7 @@ export default function Home() {
       <MeteorsDemo />
       <HeroScrollDemo />
       <FeaturesSectionDemo />
-      <h1>Landing Page</h1>
-      <Button
-        onClick={() => {
-          redirect("/sign-in");
-        }}
-      >
-        Sign In
-      </Button>
+     
       <footer className=" rounded-lg shadow m-4">
         <div className="w-full max-w-screen-xl mx-auto p-4 md:py-8">
           <div className="sm:flex sm:items-center sm:justify-between">
@@ -63,8 +55,8 @@ export default function Home() {
           <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
           <span className="block text-sm text-gray-500 sm:text-center dark:text-gray-400">
             © 2023{" "}
-            <a href="https://flowbite.com/" className="hover:underline">
-              Flowbite™
+            <a href="" className="hover:underline">
+              Logo
             </a>
             . All Rights Reserved.
           </span>

@@ -3,7 +3,9 @@ import { cn } from "@/lib/utils";
 import Link, { LinkProps } from "next/link";
 import React, { useState, createContext, useContext } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { IconMenu2, IconX } from "@tabler/icons-react";
+import { IconArrowLeft, IconMenu2, IconX } from "@tabler/icons-react";
+import { Button } from "./button";
+import { SignOutButton } from "@clerk/nextjs";
 
 interface Links {
   label: string;
@@ -89,7 +91,7 @@ export const DesktopSidebar = ({
     <>
       <motion.div
         className={cn(
-          "h-full px-4 py-4 hidden  md:flex md:flex-col bg-neutral-100 dark: bg-background w-[300px] flex-shrink-0",
+          "h-full  py-4 hidden  md:flex md:flex-col bg-neutral-100 dark: bg-background w-[300px] flex-shrink-0",
           className
         )}
         animate={{
@@ -156,25 +158,28 @@ export const MobileSidebar = ({
 };
 
 export const SidebarLink = ({
-  link,
+  onClickFn,
+  button,
   className,
   ...props
 }: {
-  link: Links;
+  onClickFn: any;
+  button: any;
   className?: string;
   props?: LinkProps;
 }) => {
   const { open, animate } = useSidebar();
   return (
-    <Link
-      href={link.href}
+    <Button
+      variant={"ghost"}
+      onClick={onClickFn}
       className={cn(
-        "flex items-center justify-start gap-2  group/sidebar py-2",
+        "flex items-center justify-start gap-2   group/sidebar py-2",
         className
       )}
       {...props}
     >
-      {link.icon}
+      <span className="">{button.icon}</span>
 
       <motion.span
         animate={{
@@ -183,8 +188,37 @@ export const SidebarLink = ({
         }}
         className="text-neutral-700 dark:text-neutral-200 text-sm group-hover/sidebar:translate-x-1 transition duration-150 whitespace-pre inline-block !p-0 !m-0"
       >
-        {link.label}
+        {button.label}
       </motion.span>
-    </Link>
+    </Button>
+  );
+};
+export const LogoutButton = () => {
+  const { open, animate } = useSidebar();
+  return (
+    <SignOutButton>
+      <Button
+        variant={"ghost"}
+        className={cn(
+          "flex items-center justify-start gap-2   group/sidebar py-2"
+        )}
+      >
+        <IconArrowLeft className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+
+        <motion.span
+          animate={{
+            display: animate
+              ? open
+                ? "inline-block"
+                : "none"
+              : "inline-block",
+            opacity: animate ? (open ? 1 : 0) : 1,
+          }}
+          className="text-neutral-700 dark:text-neutral-200 text-sm group-hover/sidebar:translate-x-1 transition duration-150 whitespace-pre inline-block !p-0 !m-0"
+        >
+          Logout
+        </motion.span>
+      </Button>
+    </SignOutButton>
   );
 };

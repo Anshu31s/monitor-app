@@ -64,14 +64,18 @@ export async function PollUrl(urlId: string) {
 }
 
 export async function getUrlList() {
-  const userId = await getUserId();
-  const response = await prisma_client.url.findMany({
-    where: {
-      userId: userId,
-    },
-  });
+  try {
+    const userId = await getUserId();
+    const response = await prisma_client.url.findMany({
+      where: {
+        userId: userId,
+      },
+    });
 
-  return response;
+    return response;
+  } catch (error) {
+    throw new Error("something went wrong");
+  }
 }
 
 export async function updateIsPaused(urlId: string, currentStatus: boolean) {

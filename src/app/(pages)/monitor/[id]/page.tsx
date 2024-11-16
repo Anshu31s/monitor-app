@@ -25,6 +25,7 @@ import UptimeCard from "@/components/monitor/uptimeCard";
 
 import PauseButton from "@/components/Buttons/pauseButton";
 import { EditProfile } from "@/components/Buttons/editProfile";
+import Link from "next/link";
 
 export default function Page() {
   const [initialUrlDetail, setInitialUrlDetails] = useState<url | null>(null);
@@ -62,9 +63,9 @@ export default function Page() {
   return (
     <div>
       <div>
-        <Card className=" flex justify-between">
+        <Card className=" flex justify-between items-center">
           <CardHeader>
-            <CardTitle className=" flex gap-5">
+            <CardTitle className=" flex gap-3 items-center">
               <div>
                 {!urlDetails.currentStatus ? (
                   <Skeleton className="w-[20px] h-[20px] rounded-full" />
@@ -80,15 +81,19 @@ export default function Page() {
                   />
                 )}
               </div>
-              <span className=" text-xl font-semibold">
+              <span className=" text-3xl font-semibold">
                 {initialUrlDetail?.siteName}
               </span>
             </CardTitle>
             <CardDescription className=" ml-11">
-              {initialUrlDetail?.url}
+              <Link href={initialUrlDetail.url}>
+                <span className=" text-blue-500 underline">
+                  {initialUrlDetail?.targetDomain}
+                </span>
+              </Link>
             </CardDescription>
           </CardHeader>
-          <div className=" p-6 flex gap-5 w-[400px]">
+          <div className=" p-6 flex gap-5 w-[400px] mr-2">
             <PauseButton />
             <Button>
               <BellIcon />
@@ -98,15 +103,15 @@ export default function Page() {
           </div>
         </Card>
       </div>
-      <div className=" flex gap-5 mt-5">
+      <div className=" flex flex-wrap gap-5 mt-5">
         <CurrentlyUpForCard />
         <LastChecked />
         <CurrentStatusCard />
         <UptimeCard />
       </div>
-      <div>
+      {/* <div>
         <MonitorChart />
-      </div>
+      </div> */}
     </div>
   );
 }
