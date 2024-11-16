@@ -36,10 +36,8 @@ export function DataTable<TData, TValue>({
   });
 
   const router = useRouter();
-   console.log(isLoading);
    
   const handleClick = async (data: any) => {
-    console.log("🚀 ~ handleClick ~ data:", data);
     router.push(`/monitor/${data.id}`);
   };
 
@@ -66,7 +64,7 @@ export function DataTable<TData, TValue>({
         </TableHeader>
         <TableBody>
           {isLoading ? (
-            <TableRow className=" h-24 flex items-center justify-center w-full">
+            <TableRow className=" h-14 flex items-center justify-center w-full">
               <LoaderCircle className=" animate-spin w-full" />
             </TableRow>
           ) : (

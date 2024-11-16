@@ -5,7 +5,7 @@ function layout({ children }: { children: ReactNode }) {
   return (
     <div className="w-full">
       <SidebarDemo>
-      <div className="border w-full p-4 m-4">
+      <div className="border rounded-lg w-full p-4 m-4">
           {children}
          </div>
       </SidebarDemo>

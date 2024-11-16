@@ -64,8 +64,8 @@ export default function Page() {
     <div>
       <div>
         <Card className=" flex justify-between items-center">
-          <CardHeader>
-            <CardTitle className=" flex gap-3 items-center">
+          <CardHeader className="flex flex-row items-center space-x-2 space-y-5">
+            <CardTitle>
               <div>
                 {!urlDetails.currentStatus ? (
                   <Skeleton className="w-[20px] h-[20px] rounded-full" />
@@ -81,11 +81,12 @@ export default function Page() {
                   />
                 )}
               </div>
+            </CardTitle>
+
+            <CardDescription className="flex flex-col">
               <span className=" text-3xl font-semibold">
                 {initialUrlDetail?.siteName}
               </span>
-            </CardTitle>
-            <CardDescription className=" ml-11">
               <Link href={initialUrlDetail.url}>
                 <span className=" text-blue-500 underline">
                   {initialUrlDetail?.targetDomain}
