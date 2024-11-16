@@ -18,7 +18,7 @@ export default function MonitoringComponent() {
   }, []);
 
   return (
-    <div className="container mx-auto py-10 w-[100]">
+    <div className="mt-4 w-full">
       <DataTable columns={columns} data={urlList} />
     </div>
   );

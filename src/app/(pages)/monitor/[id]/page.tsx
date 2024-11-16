@@ -64,9 +64,9 @@ export default function Page() {
   return (
     <div>
       <div>
-        <Card className=" flex justify-between">
+        <Card className=" flex justify-between items-center">
           <CardHeader>
-            <CardTitle className=" flex gap-5">
+            <CardTitle className=" flex justify-evenly items-center">
               <div>
                 <Lottie
                   animationData={
@@ -86,7 +86,7 @@ export default function Page() {
               {initialUrlDetail?.url}
             </CardDescription>
           </CardHeader>
-          <div className=" p-6 flex gap-5 w-[30%]">
+          <div className="flex w-[400px] gap-4 ">
             <Button>
               <Pause />
               Pause
@@ -102,15 +102,15 @@ export default function Page() {
           </div>
         </Card>
       </div>
-      <div className=" flex gap-5 mt-5">
+      <div className=" flex flex-wrap gap-5 mt-5">
         <CurrentlyUpForCard />
         <LastChecked />
         <CurrentStatusCard />
         <UptimeCard />
       </div>
-      <div>
+      {/* <div>
         <MonitorChart />
-      </div>
+      </div> */}
     </div>
   );
 }

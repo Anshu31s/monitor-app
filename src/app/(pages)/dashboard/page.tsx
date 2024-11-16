@@ -11,7 +11,7 @@ function Dashboard() {
   
   return (
     <div >
-      <div className=" flex justify-between ">
+      <div className=" flex justify-between">
         <h2 className=" text-primary mb-2 text-3xl font-semibold">Monitors</h2>
         <Link href={'/new-monitor'}>
           <Button>
