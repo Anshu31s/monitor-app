@@ -74,12 +74,6 @@ This project was about:
 - Add **Slack and Telegram integrations**.
 - Provide more precise information about why Issue is caused
 
-![WhatsApp Image 2024-11-28 at 12.58.28_756ca42b.jpg]([attachment:c3069a9a-7956-428c-a0bc-0ac7cfde0dd2:WhatsApp_Image_2024-11-28_at_12.58.28_756ca42b.jpg](https://www.notion.so/image/attachment%3Ac3069a9a-7956-428c-a0bc-0ac7cfde0dd2%3AWhatsApp_Image_2024-11-28_at_12.58.28_756ca42b.jpg?table=block&id=21d195d7-9ea5-808e-a5e3-cfb7f1dff6c2&spaceId=1678bce3-d970-415c-8f32-b6a3df168813&width=2000&userId=cfd5cf81-3261-407a-baff-18813abf389b&cache=v2))
-
-![WhatsApp Image 2024-11-28 at 12.58.28_7dddd48c.jpg](attachment:7e97e02f-9137-4dc1-a60d-f73822acb32e:WhatsApp_Image_2024-11-28_at_12.58.28_7dddd48c.jpg)
-
-![WhatsApp Image 2024-11-28 at 12.58.31_61f8684b.jpg](attachment:9320f8eb-8ec8-438e-a41e-2a5b4b43bc2a:WhatsApp_Image_2024-11-28_at_12.58.31_61f8684b.jpg)
 
 Noted : - Made 2 version of this app so earlier version is hosted but later version i not but source code is available on GitHub 
-version 2 has kubernative has  scaling & regional deployment features to maintain latency but we  deployed it for some time but azure credits are not enough for us to live it life time so
-](https://www.notion.so/image/attachment%3Ac3069a9a-7956-428c-a0bc-0ac7cfde0dd2%3AWhatsApp_Image_2024-11-28_at_12.58.28_756ca42b.jpg?table=block&id=21d195d7-9ea5-808e-a5e3-cfb7f1dff6c2&spaceId=1678bce3-d970-415c-8f32-b6a3df168813&width=2000&userId=cfd5cf81-3261-407a-baff-18813abf389b&cache=v2)
+version 2 has kubernative has  scaling & regional deployment features to maintain latency but we  deployed it for some time but azure credits are not enough for us to live it life time 
